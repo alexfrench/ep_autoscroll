@@ -1,0 +1,18 @@
+{
+  "name": "ep_autoscroll",
+  "version": "0.0.10",
+  "keywords": [
+  ],
+  "description": "Auto scroll down when captioming added to bottom of dcoument",
+  "author": {
+	  "name": "Alex French",
+      "email": "alexfrenchhome@gmail.com"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "bugs": {
+	    "email": "alexfrenchhome@gmail.com"
+  },
+  "license": ""
+}
