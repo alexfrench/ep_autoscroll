@@ -1,11 +1,11 @@
 /**
  * autoscroll plugin for Etherpad.
  * client-side JS file.
- * @author Beonit Lathiere
+ * @author Alex French
  * @filesource index.js
  */
 
-var autoscroll = (function(){
+var autoScroll = (function(){
 	
 	var active = false;
 	var newY = 1000;
@@ -47,44 +47,12 @@ var autoscroll = (function(){
 })();
 
 exports.postAceInit = function(hook, context) {		//context.ace, context.pad
-	autoscroll.init();
+	autoScroll.init();
 };
 exports.acePostWriteDomLineHTML = function(hook, context) { // context.node: the DOM node that just got written to the page
 
-	autoscroll.autoscroll();
+	autoScroll.autoscroll();
 };
-
-/*
-exports.aceEditEvent = (hook, context) => {
-    // If it's not a click or a key event then do nothing
-    const cs = call.callstack;
-
-
-    // if (!(cs.type === 'handleClick') && !(cs.type === 'handleKeyEvent') && !(cs.docTextChanged)) {
-    if (!(cs.type === 'handleClick') && !(cs.type === 'handleKeyEvent') ) {
-      return false;
-    }
-
-
-    // If it's an initial setup event then do nothing..
-    if (cs.type === 'setBaseText' || cs.type === 'setup') return false;
-  
-    // It looks like we should check to see if this section has this attribute
-    setTimeout(() => { // avoid race condition..
-
-      //const attributeManager = call.documentAttributeManager;
-      const rep = call.rep;
-
-    debugger;
- 
-	const selLine = rep.selStart[0];
-	const lastLine = rep.alines.length -1;
-
-	autoscroll.change ((selLine >= lastLine -2));      
-      
-    }, 250); // timeout
-
-  };*/
 
   exports.aceSelectionChanged = function(hookName, context) {
 
@@ -103,7 +71,7 @@ exports.aceEditEvent = (hook, context) => {
 		var i=0;
 		var caret=0;
 		while (i <= caretLine) {
-			/onsole.log (lines.atIndex(i));
+			console.log (lines.atIndex(i));
 			caret += (lines.atIndex(i).width -1); 
 			i++;
 		}
@@ -111,10 +79,10 @@ exports.aceEditEvent = (hook, context) => {
 		if (textLength - caret < 50){
 			// if we are close to the end of the document then scroll down
 			console.log ("aceSelectionChanged:Scroll on");
-			autoscroll.change (true); 
+			autoScroll.change (true); 
 		} else {
 			console.log ("aceSelectionChanged:Scroll off");
-			autoscroll.change (false); 
+			autoScroll.change (false); 
 		}
 		
 	}

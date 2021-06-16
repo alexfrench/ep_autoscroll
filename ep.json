@@ -3,9 +3,7 @@
     {
       "name":"autoscroll",
       "hooks":{
-    	  "eejsBlock_scripts":"ep_autoscroll/index",
-    	  "eejsBlock_mySettings":"ep_autoscroll/index",
-    	  "clientVars":"ep_autoscroll/index" 
+    	  "eejsBlock_scripts":"ep_autoscroll/index"
       },
       "client_hooks":{
     	  "postAceInit":"ep_autoscroll/static/js/index",

@@ -1,18 +1,48 @@
 {
   "name": "ep_autoscroll",
+  "description": "Scoll down automatically when new text is appending to the document ONLY if the caret is near the bottom of the document",
   "version": "0.0.10",
-  "keywords": [
-  ],
-  "description": "Auto scroll down when captioming added to bottom of dcoument",
   "author": {
-	  "name": "Alex French",
-      "email": "alexfrenchhome@gmail.com"
+    "name": "Alex French",
+    "email": "alexfrenchhome@gmail.com",
+    "url": "https://farsightsystems.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alexfrench/ep_autoscroll"
+  },
+  "contributors": [],
+  "readme": "",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/alexfrench/ep_autoscroll/issues"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://farsightsystems.com"
+  },
+  "devDependencies": {
+    "eslint": "^7.18.0",
+    "eslint-config-etherpad": "^1.0.24",
+    "eslint-plugin-eslint-comments": "^3.2.0",
+    "eslint-plugin-mocha": "^8.0.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prefer-arrow": "^1.2.3",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-you-dont-need-lodash-underscore": "^6.10.0"
+  },
+  "peerDependencies": {
+    "ep_etherpad-lite": ">=1.8.6"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": "etherpad/plugin"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "engines": {
-    "node": "*"
-  },
-  "bugs": {
-	    "email": "alexfrenchhome@gmail.com"
-  },
-  "license": ""
+    "node": ">=10.13.0"
+  }
 }

@@ -1,7 +1,7 @@
 /**
  * autoscroll plugin for Etherpad.
  * server-side file.
- * @author Benoit Lathiere
+ * @author Alex French
  * @filesource index.js
  * test test
  */
