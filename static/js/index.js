@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * autoscroll plugin for Etherpad.
  * client-side JS file.
@@ -5,10 +7,56 @@
  * @filesource index.js
  */
 
-var autoScroll = (function(){
+exports.postAceInit = (hook_name, args, cb) => {
+	autoScroll.init();
+	cb();
+};
+
+exports.acePostWriteDomLineHTML = (hook_name, args, cb) => { // context.node: the DOM node that just got written to the page
+	autoScroll.autoscroll();
+	cb();
+};
+
+exports.aceSelectionChanged = (hook_name, contex) => {
+
+	var rep = context.rep;
+
+	if (rep.selStart[0] === rep.selEnd[0] && rep.selEnd[1] === rep.selStart[1]) {	
+
+		const text = $('iframe[name="ace_outer"]').contents().find('iframe').contents().find('#innerdocbody').text();
+		var textLength = text.replace(/\s/g, '').length;
+
+		var lines = rep.lines;
+
+		console.log ("aceSelectionChanged:textength" + textLength);
+		var caretLine = rep.selStart [0];
+
+		var i=0;
+		var caret=0;
+		while (i <= caretLine) {
+			console.log (lines.atIndex(i));
+			caret += (lines.atIndex(i).width -1); 
+			i++;
+		}
+
+		if (textLength - caret < 50){
+			// if we are close to the end of the document then scroll down
+			console.log ("aceSelectionChanged:Scroll on");
+			autoScroll.change (true); 
+		} else {
+			console.log ("aceSelectionChanged:Scroll off");
+			autoScroll.change (false); 
+		}
+		
+	}
+
+  };	
+	
+  var autoScroll = () => {
 	
 	var active = false;
 	var newY = 1000;
+
 	return{
 		init : function(){
 			active = false;
@@ -44,48 +92,4 @@ var autoScroll = (function(){
 			}
 		},
 	};
-})();
-
-exports.postAceInit = function(hook, context) {		//context.ace, context.pad
-	autoScroll.init();
 };
-exports.acePostWriteDomLineHTML = function(hook, context) { // context.node: the DOM node that just got written to the page
-
-	autoScroll.autoscroll();
-};
-
-  exports.aceSelectionChanged = function(hookName, context) {
-
-	var rep = context.rep;
-
-	if (rep.selStart[0] === rep.selEnd[0] && rep.selEnd[1] === rep.selStart[1]) {	
-
-		const text = $('iframe[name="ace_outer"]').contents().find('iframe').contents().find('#innerdocbody').text();
-		var textLength = text.replace(/\s/g, '').length;
-
-		var lines = rep.lines;
-
-		console.log ("aceSelectionChanged:textength" + textLength);
-		var caretLine = rep.selStart [0];
-
-		var i=0;
-		var caret=0;
-		while (i <= caretLine) {
-			console.log (lines.atIndex(i));
-			caret += (lines.atIndex(i).width -1); 
-			i++;
-		}
-
-		if (textLength - caret < 50){
-			// if we are close to the end of the document then scroll down
-			console.log ("aceSelectionChanged:Scroll on");
-			autoScroll.change (true); 
-		} else {
-			console.log ("aceSelectionChanged:Scroll off");
-			autoScroll.change (false); 
-		}
-		
-	}
-
-  };	
-	

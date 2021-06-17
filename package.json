@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/alexfrench/ep_autoscroll"
+    "url": "git+https://github.com/alexfrench/ep_autoscroll"
   },
   "contributors": [],
   "readme": "",
@@ -21,6 +21,7 @@
     "type": "individual",
     "url": "https://farsightsystems.com"
   },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^7.18.0",
     "eslint-config-etherpad": "^1.0.24",

@@ -6,9 +6,9 @@
     	  "eejsBlock_scripts":"ep_autoscroll/index"
       },
       "client_hooks":{
-    	  "postAceInit":"ep_autoscroll/static/js/index",
-    	  "acePostWriteDomLineHTML":"ep_autoscroll/static/js/index",
-        "aceSelectionChanged":"ep_autoscroll/static/js/index" 
+    	  "postAceInit":"ep_autoscroll/static/js/index:postAceInit",
+    	  "acePostWriteDomLineHTML":"ep_autoscroll/static/js/index:acePostWriteDomLineHTML",
+        "aceSelectionChanged":"ep_autoscroll/static/js/index:aceSelectionChanged" 
       }
     }
   ]
