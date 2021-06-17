@@ -2,9 +2,6 @@
   "parts":[
     {
       "name":"autoscroll",
-      "hooks":{
-    	  "eejsBlock_scripts":"ep_autoscroll/index"
-      },
       "client_hooks":{
     	  "postAceInit":"ep_autoscroll/static/js/index:postAceInit",
     	  "acePostWriteDomLineHTML":"ep_autoscroll/static/js/index:acePostWriteDomLineHTML",
