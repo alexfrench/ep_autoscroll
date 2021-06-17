@@ -3,13 +3,10 @@
  * server-side file.
  * @author Alex French
  * @filesource index.js
- * test test
  */
-var eejs = require("ep_etherpad-lite/node/eejs");
-var settings = require('ep_etherpad-lite/node/utils/Settings');
-exports.eejsBlock_scripts = function(hook_name, args, cb){
-	args.content += "<script type='text/javascript' src='../static/plugins/ep_autoscroll/static/js/jquery-3.3.1.min.js'></script>";
-	args.content += "<script>$.noConflict();</script>";	//required to avoid bug..
-	args.content += "<script type='text/javascript' src='../static/plugins/ep_autoscroll/static/js/index.js'></script>";
-	return cb();
-};
+ var eejs = require("ep_etherpad-lite/node/eejs");
+ var settings = require('ep_etherpad-lite/node/utils/Settings');
+ exports.eejsBlock_scripts = (hook_name, args, cb) => {
+	 args.content += eejs.require('ep_autoscroll/scripts.js', {}, module);
+   return cb();
+ };

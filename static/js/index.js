@@ -7,17 +7,17 @@
  * @filesource index.js
  */
 
-exports.postAceInit = (hook_name, args, cb) => {
-	autoScroll.init();
+ exports.postAceInit = (hookName, args, cb) => {
+	autoScroller.init();
 	cb();
 };
 
 exports.acePostWriteDomLineHTML = (hook_name, args, cb) => { // context.node: the DOM node that just got written to the page
-	autoScroll.autoscroll();
+	autoScroller.autoscroll();
 	cb();
 };
 
-exports.aceSelectionChanged = (hook_name, contex) => {
+exports.aceSelectionChanged = (hook_name, context) => {
 
 	var rep = context.rep;
 
@@ -42,17 +42,17 @@ exports.aceSelectionChanged = (hook_name, contex) => {
 		if (textLength - caret < 50){
 			// if we are close to the end of the document then scroll down
 			console.log ("aceSelectionChanged:Scroll on");
-			autoScroll.change (true); 
+			autoScroller.change (true); 
 		} else {
 			console.log ("aceSelectionChanged:Scroll off");
-			autoScroll.change (false); 
+			autoScroller.change (false); 
 		}
 		
 	}
 
   };	
 	
-  var autoScroll = () => {
+  var autoScroller = (function(){
 	
 	var active = false;
 	var newY = 1000;
@@ -92,4 +92,4 @@ exports.aceSelectionChanged = (hook_name, contex) => {
 			}
 		},
 	};
-};
+})();

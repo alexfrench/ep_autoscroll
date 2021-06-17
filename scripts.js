@@ -1,0 +1,1 @@
+<script src="../static/plugins/ep_autoscroll/static/js/index.js"></script>
