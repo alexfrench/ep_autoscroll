@@ -20,24 +20,29 @@ exports.acePostWriteDomLineHTML = (hook_name, args, cb) => { // context.node: th
 exports.aceSelectionChanged = (hook_name, context) => {
 
 	var rep = context.rep;
+	//console.log (context);
 
 	if (rep.selStart[0] === rep.selEnd[0] && rep.selEnd[1] === rep.selStart[1]) {	
 
-		const text = $('iframe[name="ace_outer"]').contents().find('iframe').contents().find('#innerdocbody').text();
-		var textLength = text.replace(/\s/g, '').length;
-
-		var lines = rep.lines;
+		var lines = rep.lines; // each line is a paragraph
 
 		console.log ("aceSelectionChanged:textength" + textLength);
-		var caretLine = rep.selStart [0];
+		var caretLine = rep.selStart [0]; // the selected paragraph
+
 
 		var i=0;
 		var caret=0;
-		while (i <= caretLine) {
-			console.log (lines.atIndex(i));
+		var textLength = lines._totalWidth;
+
+		console.log ('rep.selStart[0] ' + rep.selStart[0]); 
+		while (i < caretLine) {
 			caret += (lines.atIndex(i).width -1); 
 			i++;
 		}
+
+		caret += rep.selStart [1]; // add the current character position
+
+		console.log ("caret=" + caret + " textlength=" + textLength);
 
 		if (textLength - caret < 50){
 			// if we are close to the end of the document then scroll down
@@ -49,6 +54,7 @@ exports.aceSelectionChanged = (hook_name, context) => {
 		}
 		
 	}
+ 	
 
   };	
 	
